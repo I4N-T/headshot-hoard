@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
         score = 0;
+        ZombieScript.isShuttingDown = false;
     }
 
     void Start()
@@ -29,12 +30,6 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         currentScene = SceneManager.GetActiveScene();
-
-        //if game over, stop generating zombies
-        /*if (currentScene.buildIndex == 2)
-        {
-            StopAllCoroutines();
-        }*/
 
         if (currentScene.buildIndex == 1)
         {
@@ -70,7 +65,7 @@ public class GameManager : MonoBehaviour {
             RandomLocationMethod(zombiePrefab);
             yield return new WaitForSeconds(2.25f);
         }
-        while (score >= 300 && score < 500)
+        while (score >= 300)
         {
             RandomLocationMethod(zombiePrefab);
             yield return new WaitForSeconds(2f);
@@ -98,7 +93,7 @@ public class GameManager : MonoBehaviour {
             RandomLocationMethod(zombieHelmetPrefab);
             yield return new WaitForSeconds(3f);
         }
-        while (score >= 300 && score < 500)
+        while (score >= 300)
         {
             RandomLocationMethod(zombieHelmetPrefab);
             yield return new WaitForSeconds(2.5f);
@@ -126,7 +121,7 @@ public class GameManager : MonoBehaviour {
             RandomLocationMethod(zombieTeleportPrefab);
             yield return new WaitForSeconds(5f);
         }
-        while (score >= 400 && score < 500)
+        while (score >= 400)
         {
             RandomLocationMethod(zombieTeleportPrefab);
             yield return new WaitForSeconds(4f);
